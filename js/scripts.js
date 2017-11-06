@@ -1,6 +1,5 @@
-var menA = [];
-var womenA = [];
-var data = "";
+var menBar = [];
+var womenBar = [];
 
 $(document).ready(function() {
   console.log("ready!");
@@ -14,34 +13,49 @@ $(document).ready(function() {
 
 function loadData(){
   
-  //$.ajax{
-  //  
-  //}
-
-  parseData(data);
+  $.ajax({
+    type: 'GET',
+    url: "data.json",
+    dataType: "json",
+    success: parseData
+});
 }
 
 
 function parseData(data){
   
-  
-  //do a loop through data and push to your arrays.
-    menA = [0,2];
-  womenA = [2,5];
-  
+  console.log(data);
+  dataOne = $.parseJSON(data);
+  console.log(dataOne);
+  for (var i = 0, len = dataOne.length; i < len; ++i) {
+    menBar.push(dataOne[i]["menBar"]);
+    womenBar.push(dataOne[i]["womenBar"]);
+    
+    if (dataOne[i]["gender"] =="male") {
+      maleCount++; }
+      else {
+        femaleCount++;
+      }
+    }
+  var sum = age.reduce((previous, current) => current += previous);
+  var avg = sum/ age.length;
+  console.log(avg);
+  console.log(maleCount);
   buildCharts();
-  
-}
+   //dataLen = data.length,
+  }
+  //do a loop through data and push to your arrays.
+  //for (i = 0; i < dataLen; i += 1) {
+  //
+  //  // add browser data
+  //  browserData.push({
+  //      name: categories[i],
+  //      y: data[i].y,
+  //      color: data[i].color
+  //  });
 
-
-//function hideTable() {
-//    var x = document.getElementById("myDIV");
-//    if (x.style.display === "none") {
-//        x.style.display = "block";
-//   } else {
-//        x.style.display = "none";
-
-//Chart 1
+    menBar = [0,2];
+  womenBar = [2,5];
 
 function buildCharts(){
   
