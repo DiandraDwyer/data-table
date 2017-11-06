@@ -1,0 +1,171 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Washington Post</title>
+  <meta name="description" content="Police Force in Bloomington, IN">
+  <meta name="author" content="Diandra Dwyer">
+  
+<!--JQUERY-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<!--BOOTSTRAP-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--GOOGLE FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+<!--MY STYLES-->
+     <link rel="stylesheet" href="css/styles.css">
+ 
+</head>
+
+<body>
+<div id = "menu"></div>
+<img src = "images/logo.svg" alt = "Washington Post Logo" class = "img-responsive">
+
+<p class = "slogan"> Democracy Dies in Darkness</p>
+<div>
+<p class = "inln bold date"> November 6, 2017</p>
+<p class = "edition inln date"> Edition: U.S & World | Regional </p>
+</div>
+<div id = "line"></div>
+<p class = "tiny">Local </p>
+<h1> Police Draw Weapons on Male Suspects Nearly Half the Time</h1>
+<div id = "line2"></div>
+<p class = "b-line inln"> <span class = "bold"> By <span class = "blue">Diandra Dwyer</span></span> <span class = "gray"> November 5 at 2:00 PM </span></p> <img src = "images/mail-icon2.png" class = "imge-size inln">
+
+<p> BLOOMINGTON, In. – Data from The Bloomington Police Department show that male suspects apprehended between April 2017 and July 2017 had a weapon drawn on them 48% of the time. </p>
+<p>Sixty-seven percent of these men were recorded as "normal," meaning they were not impaired at the time of the encounter.  </p>
+
+<!--CHART ONE: USES HIGH CHARTS-->
+<div id="container2"></div>
+
+<p> Out of all male suspects who had a weapon drawn on them, 46% had a weapon as well. None of the officers in these encounters were injured. Twenty-three percent of all suspects who had a weapon drawn on them were injured.
+</p>
+<p> Men were four times as likely to have a weapon drawn on them as women. The data show that Caucasian Non-Hispanic men were almost twice as likely to have a weapon drawn on them as African American Non-Hispanic men. </p>
+<p>According to <a href = "https://bloomington.in.gov/sites/default/files/2017-05/demographic_profile.pdf" target = "blank"><span class = "blue2">Bloomington's Census Data</span></a>, the population of Bloomington is 83% Caucasian and 4.6% African American, which means the total proportion of Caucasian men is greater.</p>
+</p>
+<!--CHART TWO: USES HIGH CHARTS-->
+<div id="container" class = "chart1"></div>
+
+<p> Weapons, fighting, warrants and suspicious activity were the top four most common charges for men who had weapons drawn on them.  </p>
+
+<!--TABLE OF ALLEGED CHARGES-->
+<table class="table table-bordered table-hover table-condensed center table-size2">
+<tbody><tr>
+<th class = "title">Alleged Charges: Men Who Had Weapons Drawn on Them</th>
+</tr>
+<tr>
+<td>Weapons</td>
+</tr>
+<tr>
+<td>Fight</td>
+</tr>
+<tr>
+<td>Warrant</td>
+</tr>
+<tr>
+<td>Suspicious Activity</td>
+</tr>
+<tr>
+<td>Domestic</td>
+</tr>
+<tr>
+<td>Burglary</td>
+</tr>
+<tr>
+<td>Welfare Check</td>
+</tr>
+<tr>
+<td>Disturbance</td>
+</tr>
+<tr>
+<td>Service</td>
+</tr>
+<tr>
+<td>Fraud</td>
+</tr>
+</tbody></table>
+
+<!--FULL TABLE: USES AJAX-->
+<!--<button onclick="hideTable();"> View Full Table</button>-->
+
+    <table id="example" class="display" width: 40%; cellspacing="0">
+        <thead>
+            <tr>
+                <th>Event Number</th>
+                <th>District</th>
+                <th>Nature</th>
+                <th>How Received</th>
+                <th>Date</th>
+                <th>Physical Contact</th>
+                <th>Less Lethal</th>
+                <th>Draw Weapon</th>
+                <th>Weapon Fire</th>
+                <th>Vehicle Pursuit</th>
+                <th>Foot Pursuit</th>
+                <th>Suspect Condition</th>
+                <th>Suspect Armed</th>
+                <th>Suspect Injured</th>
+                <th>Officer Exposed to BBP</th>
+                <th>Suspect Gender Female</th>
+                <th>Suspect Gender Male</th>
+                <th>Suspect Age</th>
+                <th>Caucasian, Non-Hispanic</th>
+                <th>Caucasian, Hispanic</th>
+                <th>African American, Non-Hispanic</th>
+                <th>African American, Hispanic</th>
+                <th>Indian/Alaskan-Native, Non-Hispanic</th>
+                <th>Indian/Alaskan-Native, Hispanic</th>
+                <th>Asian/Pacific-Islander, Non-Hispanic</th>
+                <th>Asian/Pacific-Islander, Hispanic</th>
+            </tr>
+        </thead>
+        <tfoot>
+                <tr>
+                <th>Event Number</th>
+                <th>District</th>
+                <th>Nature</th>
+                <th>How Received</th>
+                <th>Date</th>
+                <th>Physical Contact</th>
+                <th>Less Lethal</th>
+                <th>Draw Weapon</th>
+                <th>Weapon Fire</th>
+                <th>Vehicle Pursuit</th>
+                <th>Foot Pursuit</th>
+                <th>Suspect Condition</th>
+                <th>Suspect Armed</th>
+                <th>Suspect Injured</th>
+                <th>Officer Exposed to BBP</th>
+                <th>Suspect Gender Female</th>
+                <th>Suspect Gender Male</th>
+                <th>Suspect Age</th>
+                <th>Caucasian, Non-Hispanic</th>
+                <th>Caucasian, Hispanic</th>
+                <th>African American, Non-Hispanic</th>
+                <th>African American, Hispanic</th>
+                <th>Indian/Alaskan-Native, Non-Hispanic</th>
+                <th>Indian/Alaskan-Native, Hispanic</th>
+                <th>Asian/Pacific-Islander, Non-Hispanic</th>
+                <th>Asian/Pacific-Islander, Hispanic</th>
+            </tr>
+        </tfoot>
+    </table>
+    
+
+ <!--JQUERY-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<!--BOOTSTRAP-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--HIGHCHARTS-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!--DATA TABLES-->
+<script src = "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<!--MY SCRIPTS-->
+ <script src="js/scripts.js"></script>
+</body>
+</html>
