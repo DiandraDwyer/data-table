@@ -1,5 +1,4 @@
-var menBar = [];
-var womenBar = [];
+
 
 $(document).ready(function() {
   console.log("ready!");
@@ -17,30 +16,53 @@ function loadData(){
     type: 'GET',
     url: "data.json",
     dataType: "json",
-    success: parseData
+    success: getTotals
 });
 }
 
 
-function parseData(data){
+function getTotals(data){
+  var total_drawn_female;
+  var total_drawn_male;
+  var total_not_drawn_female;
+  var total_not_drawn_male;
   
   console.log(data);
   dataOne = $.parseJSON(data);
   console.log(dataOne);
-  for (var i = 0, len = dataOne.length; i < len; ++i) {
-    menBar.push(dataOne[i]["menBar"]);
-    womenBar.push(dataOne[i]["womenBar"]);
-    
-    if (dataOne[i]["gender"] =="male") {
-      maleCount++; }
-      else {
-        femaleCount++;
-      }
+  for (var i = 0; i < dataOne.length; i++) {
+
+    if (dataOne[i]["draw_weapon"] =="YES") {
+      var thisFemaleSuspect = dataOne[i]["suspect_gender_female"];
+      var thisMaleSuspect = dataOne[i]["suspect_gender_male"];
+       if (thisFemaleSuspect !== null) {
+           total_drawn_female += thisFemaleSuspect;
+             }
+       if (thisMaleSuspect !== null) {
+           total_drawn_male +=  thisMaleSuspect;
+           
+             }
+              
+  }
+  
+   if (dataOne[i]["draw_weapon"] =="NO") {
+      var thisFemaleSuspect = dataOne[i]["suspect_gender_female"];
+      var thisMaleSuspect = dataOne[i]["suspect_gender_male"];
+       if (thisFemaleSuspect !== null) {
+           total_not_drawn_female += thisFemaleSuspect;
+             }
+       if (thisMaleSuspect !== null) {
+           total_not_drawn_female +=  thisMaleSuspect;
+             }
+              
+  } 
+  
+  
+  
+  
+  
     }
-  var sum = age.reduce((previous, current) => current += previous);
-  var avg = sum/ age.length;
-  console.log(avg);
-  console.log(maleCount);
+ 
   buildCharts();
    //dataLen = data.length,
   }
