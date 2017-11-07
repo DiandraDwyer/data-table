@@ -1,17 +1,17 @@
-
-
 $(document).ready(function() {
   console.log("ready!");
-  
+  var total_male_cauc_nonhisp_drawn;
+var total_male_aa_nonhisp_drawn;
+
   loadData();
-  
+
     $('#example').DataTable( {
-        "ajax": 'data.json'
+        "ajax": "datatables.json"
     } );
 } );
 
 function loadData(){
-  
+
   $.ajax({
     type: 'GET',
     url: "data.json",
@@ -22,47 +22,88 @@ function loadData(){
 
 
 function getTotals(data){
+
+//filters
+var male_cauc_nonhisp_drawn = data.filter(function(incident){
+  return incident["suspect_gender_male"] !== null && incident["cauc_nonhisp"] !== null && incident["draw_weapon"] == "YES";
+});
+
+var male_aa_nonhisp_drawn = data.filter(function(incident){
+  return incident["suspect_gender_male"] !== null && incident["aa_nonhisp"] !== null && incident["draw_weapon"] == "YES";
+});
+
+
+var female_aa_nonhisp_drawn = data.filter(function(incident){
+  return incident["suspect_gender_female"] !== null && incident["aa_nonhisp"] !== null && incident["draw_weapon"] == "YES";
+});
+
+//function to get sum of a column in filtered data
+function getSum(filteredData, getSumOf){
+  var thisTotal = 0;
+  for (i in filteredData){
+    thisTotal += parseInt(filteredData[i][getSumOf]);
+  }
+  return thisTotal;
+}
+
+//function to create arrays out of totals
+function arrayify(total){
+  var arr = [];
+  arr.push(total);
+  return arr;
+}
+
+//get sums of female and male
+total_male_cauc_nonhisp_drawn = getSum(male_cauc_nonhisp_drawn, "suspect_gender_male");
+total_female_aa_nonhisp_drawn = getSum(female_aa_nonhisp_drawn, "suspect_gender_female");
+
+total_male_aa_nonhisp_drawn = getSum(male_aa_nonhisp_drawn, "suspect_gender_male");
+
+//make totals into arrays for highcharts
+total_male_cauc_nonhisp_drawn = arrayify(total_male_cauc_nonhisp_drawn);
+
+total_male_aa_nonhisp_drawn = arrayify(total_male_aa_nonhisp_drawn);
+
+total_female_aa_nonhisp_drawn = arrayify(total_female_aa_nonhisp_drawn);
+
+
+
   var total_drawn_female;
   var total_drawn_male;
   var total_not_drawn_female;
   var total_not_drawn_male;
-  
-  console.log(data);
-  dataOne = $.parseJSON(data);
-  console.log(dataOne);
-  for (var i = 0; i < dataOne.length; i++) {
 
-    if (dataOne[i]["draw_weapon"] =="YES") {
-      var thisFemaleSuspect = dataOne[i]["suspect_gender_female"];
-      var thisMaleSuspect = dataOne[i]["suspect_gender_male"];
+  for (var i = 0; i < data.length; i++) {
+
+    if (data[i]["draw_weapon"] =="YES") {
+      var thisFemaleSuspect = data[i]["suspect_gender_female"];
+      var thisMaleSuspect = data[i]["suspect_gender_male"];
        if (thisFemaleSuspect !== null) {
            total_drawn_female += thisFemaleSuspect;
              }
        if (thisMaleSuspect !== null) {
            total_drawn_male +=  thisMaleSuspect;
-           
+
              }
-              
+
   }
-  
-   if (dataOne[i]["draw_weapon"] =="NO") {
-      var thisFemaleSuspect = dataOne[i]["suspect_gender_female"];
-      var thisMaleSuspect = dataOne[i]["suspect_gender_male"];
+
+   if (data[i]["draw_weapon"] =="NO") {
+      var thisFemaleSuspect = data[i]["suspect_gender_female"];
+      var thisMaleSuspect = data[i]["suspect_gender_male"];
        if (thisFemaleSuspect !== null) {
            total_not_drawn_female += thisFemaleSuspect;
              }
        if (thisMaleSuspect !== null) {
            total_not_drawn_female +=  thisMaleSuspect;
              }
-              
-  } 
-  
-  
-  
-  
-  
+
+  }
+
+
+
     }
- 
+
   buildCharts();
    //dataLen = data.length,
   }
@@ -80,7 +121,7 @@ function getTotals(data){
   womenBar = [2,5];
 
 function buildCharts(){
-  
+
 
 Highcharts.chart('container', {
     chart: {
@@ -108,11 +149,16 @@ Highcharts.chart('container', {
     },
     series: [{
         name: 'Caucasian Non-Hispanic',
-        data: menA
+        data: total_male_cauc_nonhisp_drawn
     }, {
         name: 'African-American Non-Hispanic',
-        data: womenA
-    }]
+        data: total_male_aa_nonhisp_drawn
+    },
+    ]
+    
+    
+    
+    
 });
 
 //Chart 2
